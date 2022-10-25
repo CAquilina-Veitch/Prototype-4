@@ -21,6 +21,7 @@ public class DamagingHitbox : MonoBehaviour
         if (other.TryGetComponent(out Health health))
         {
             health.HealthChange(-damage,transform.position);
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
