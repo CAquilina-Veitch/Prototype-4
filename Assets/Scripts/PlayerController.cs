@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("STATS")]
-    [SerializeField] float Health;
+    [SerializeField] int maxHealth;
     [SerializeField] float jumpHeight;
     [SerializeField] float speed;
     [SerializeField] float invisibilityDuration;
@@ -21,11 +21,16 @@ public class PlayerController : MonoBehaviour
     bool grounded;
     [SerializeField] LayerMask groundCheckMask;
     [SerializeField] SpriteRenderer sR;
+    [SerializeField] Animator anim;
+    [SerializeField] Health healthScript;
 
+    [Header("Animations")]
+    bool wasGrounded;
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthScript.healthValue = maxHealth;
+        healthScript.maxHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -35,17 +40,26 @@ public class PlayerController : MonoBehaviour
         velocity.x = Mathf.Lerp(rb.velocity.x, Input.GetAxisRaw("Horizontal")*speed,Time.deltaTime*10);
         
         velocity.y = rb.velocity.y;
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log(grounded);
+            //Debug.Log(grounded);
             if (grounded)
             {
                 velocity.y = jumpHeight;
+                anim.SetTrigger("Jump");
+                anim.ResetTrigger("Land");
             }
             
 
         }
         rb.velocity = velocity;
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            //Use Healing item
+
+        }
+
 
         // 
     }
@@ -64,14 +78,23 @@ public class PlayerController : MonoBehaviour
         {
             grounded = false;
         }
-
+        
 
         //animations
         if (rb.velocity.x != 0)
         {
             sR.flipX = rb.velocity.x < 0 ? true : false;
         }
-        
 
+        if (grounded && !wasGrounded&&rb.velocity.y<=0)
+        {
+            anim.SetTrigger("Land");
+        }
+        wasGrounded = grounded;
+    }
+    public void Die()
+    {
+        anim.SetTrigger("Die");
+        //teleport back to the place.
     }
 }
