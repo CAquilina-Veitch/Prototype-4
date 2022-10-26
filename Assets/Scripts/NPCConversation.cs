@@ -41,7 +41,7 @@ public class NPCConversation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)&& reachable)
+        if (reachable & Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (nextDialogue == 0)
             {
@@ -58,6 +58,7 @@ public class NPCConversation : MonoBehaviour
             NextText();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         reachable = true; 
