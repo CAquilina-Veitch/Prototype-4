@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,11 +37,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Shader GreyscaleShader;
     [SerializeField] Shader NormalShader;
 
+    [Header("SceneLoading")]
+    [SerializeField] string[] Scenes;
+    [SerializeField] Vector3[] StartPositions;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         SpriteMaterial.shader = NormalShader;
         invisTime = invisibilityDuration;
         refreshInvisBar();
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = velocity;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q)&& inv.medicineCount>0)
         {
             //Use Healing item
             healthScript.HealthChange(3);
@@ -193,5 +199,11 @@ public class PlayerController : MonoBehaviour
     void refreshInvisBar()
     {
 
+    }
+    public void LoadScene(int id)
+    {
+        SceneManager.LoadScene(id);
+        transform.position = StartPositions[id];
+        isInvisible = false;
     }
 }
