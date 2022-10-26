@@ -10,17 +10,13 @@ public class Health : MonoBehaviour
     [Header("Dont set these in inspector, but in their controller scripts")]
     public int maxHealth=1000;
     public int healthValue=1000;
-    
-    
-
-    Color healColour = new Color(92,156,83);
-    Color damageColour = new Color(152,83,83);
-
+    SpriteRenderer sR;
+  
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sR = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,9 +24,9 @@ public class Health : MonoBehaviour
     {
         
     }
-    public void HealthChange(int dmg,Vector3 from)
+    public void HealthChange(int dmg)
     {
-        ColourFlash(dmg > 0);
+        StartCoroutine(ColourFlash(dmg > 0));
         if (dmg > 0)
         {
             //heal
@@ -41,9 +37,7 @@ public class Health : MonoBehaviour
         {
             //take damage
             healthValue += dmg;
-            Vector3 differenceVector = transform.position - from;
-
-            rb.velocity = differenceVector.normalized * knockBack;
+            rb.velocity = Vector3.zero;
         }
 
         if (healthValue <= 0)
@@ -72,9 +66,9 @@ public class Health : MonoBehaviour
     }
     IEnumerator ColourFlash( bool heal)
     {
-        GetComponent<SpriteRenderer>().color = heal ? healColour : damageColour;
-        yield return new WaitForSeconds(0.2f);
-        GetComponent<SpriteRenderer>().color = Color.white;
+        sR.color = heal ? Color.green : Color.red;
+        yield return new WaitForSeconds(0.25f);
+        sR.color = Color.white;
     }
 
 

@@ -44,8 +44,6 @@ public class dialogueManager : MonoBehaviour
     }
     public bool Next(string words)
     {
-        Debug.Log("WROds" + words);
-
         
         if (!typing)
         {

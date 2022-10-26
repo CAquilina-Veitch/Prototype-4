@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float horizMoveSpeed;
     [SerializeField] float vertVel;
     [SerializeField] Vector2 velocity;
+    float deathMultiplier = 1;
+    public bool isInvisible;
+    float invisTime;
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D rb;
@@ -23,12 +26,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] SpriteRenderer sR;
     [SerializeField] Animator anim;
     [SerializeField] Health healthScript;
+    [SerializeField] Inventory inv;
+    [SerializeField] DamagingHitbox dmgHitbox;
+
 
     [Header("Animations")]
     bool wasGrounded;
+    [SerializeField] Material SpriteMaterial;
+    [SerializeField] Shader GreyscaleShader;
+    [SerializeField] Shader NormalShader;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        SpriteMaterial.shader = NormalShader;
+        invisTime = invisibilityDuration;
+        refreshInvisBar();
         healthScript.healthValue = maxHealth;
         healthScript.maxHealth = maxHealth;
     }
@@ -37,7 +52,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Movement
-        velocity.x = Mathf.Lerp(rb.velocity.x, Input.GetAxisRaw("Horizontal")*speed,Time.deltaTime*10);
+        velocity.x = Mathf.Lerp(rb.velocity.x, Input.GetAxisRaw("Horizontal")*speed*deathMultiplier,Time.deltaTime*10);
         
         velocity.y = rb.velocity.y;
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -45,7 +60,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(grounded);
             if (grounded)
             {
-                velocity.y = jumpHeight;
+                velocity.y = jumpHeight*deathMultiplier;
                 anim.SetTrigger("Jump");
                 anim.ResetTrigger("Land");
             }
@@ -57,8 +72,30 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //Use Healing item
-
+            healthScript.HealthChange(3);
+            inv.changeItem(item.Medicine,-1);
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //turn invisible
+            isInvisible = !isInvisible;
+            if (isInvisible)
+            {
+                SpriteMaterial.shader = GreyscaleShader;
+            }
+            else
+            {
+                SpriteMaterial.shader = NormalShader;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0)&&grounded)
+        {
+            //attack
+            StartCoroutine(attackHitbox());
+        }
+
+
+
 
 
         // 
@@ -78,6 +115,26 @@ public class PlayerController : MonoBehaviour
         {
             grounded = false;
         }
+        if (isInvisible)
+        {
+            invisTime -= Time.deltaTime;
+            if (invisTime <= 0)
+            {
+                invisTime = 0;
+                isInvisible = false;
+                SpriteMaterial.shader = NormalShader;
+            }
+
+            refreshInvisBar();
+        }
+        else if (invisTime!=invisibilityDuration)
+        {
+            invisTime += Time.deltaTime;
+            invisTime = invisTime > invisibilityDuration ? invisibilityDuration : invisTime;
+
+            refreshInvisBar();
+        }
+
         
 
         //animations
@@ -89,12 +146,52 @@ public class PlayerController : MonoBehaviour
         if (grounded && !wasGrounded&&rb.velocity.y<=0)
         {
             anim.SetTrigger("Land");
+            anim.ResetTrigger("Jump");
         }
+        anim.SetFloat("Horizontal", Mathf.Abs( Input.GetAxisRaw("Horizontal")));
         wasGrounded = grounded;
+    }
+    IEnumerator attackHitbox()
+    {
+        anim.SetTrigger("Attack");
+        dmgHitbox.GetComponent<BoxCollider2D>().enabled = true;
+        deathMultiplier = 0;
+        yield return new WaitForSeconds(0.7f);
+        deathMultiplier = 1;
+        dmgHitbox.GetComponent<BoxCollider2D>().enabled = false;
     }
     public void Die()
     {
-        anim.SetTrigger("Die");
+        StartCoroutine(death());
+        
         //teleport back to the place.
+    }
+    IEnumerator death()
+    {
+        anim.SetTrigger("Die");
+        foreach (CapsuleCollider2D hitbox in GetComponents<CapsuleCollider2D>())
+        {
+            hitbox.enabled = false;
+        }
+        rb.velocity = Vector3.zero;
+        rb.gravityScale = 0;
+        deathMultiplier = 0;
+
+        yield return new WaitForSeconds(1);
+        transform.position = Vector3.zero;
+        
+        foreach (CapsuleCollider2D hitbox in GetComponents<CapsuleCollider2D>())
+        {
+            hitbox.enabled = true;
+        }
+        rb.gravityScale = 1;
+        anim.SetTrigger("Respawn");
+        healthScript.HealthChange(10000);
+        deathMultiplier = 1;
+
+    }
+    void refreshInvisBar()
+    {
+
     }
 }

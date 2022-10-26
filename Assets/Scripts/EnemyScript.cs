@@ -42,16 +42,18 @@ public class EnemyScript : MonoBehaviour
 
         //check for wall
         RaycastHit2D wallCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * 0.6f, 0), Vector2.down, 0.01f);
-        Debug.DrawRay(transform.position + new Vector3(currentDirection*0.6f, 0), Vector2.down * 0.01f, Color.magenta, 5);
+        //Debug.DrawRay(transform.position + new Vector3(currentDirection*0.6f, 0), Vector2.down * 0.01f, Color.magenta, 5);
 
         if (wallCheck.collider != null)
         {
-            if (wallCheck.collider.tag == "GroundCollision")
+            currentDirection = -currentDirection;
+            if(wallCheck.collider.tag == "Player")
             {
-                currentDirection = -currentDirection;
-            }else if(wallCheck.collider.tag == "Player")
-            {
-                attack();
+                if (!wallCheck.collider.GetComponent<PlayerController>().isInvisible)
+                {
+                    currentDirection = -currentDirection;
+                    attack();
+                }
             }
         }
         else

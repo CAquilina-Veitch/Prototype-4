@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemScript : MonoBehaviour
 {
@@ -8,13 +9,27 @@ public class ItemScript : MonoBehaviour
     BoxCollider2D box;
     Vector2 size;
     float i;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Sprite apple;
+    [SerializeField] Sprite medicine;
+    [SerializeField] Sprite key;
+
+    private void OnEnable()
     {
+        if (id == item.Apple)
+        {
+            GetComponent<SpriteRenderer>().sprite = apple;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = id == item.Medicine ? medicine : key;
+        }
+
+
         GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.2f, 0.2f), 0.4f);
         box = GetComponent<BoxCollider2D>();
         size = box.size;
     }
+
 
     private void FixedUpdate()
     {
