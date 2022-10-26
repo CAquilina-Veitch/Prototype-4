@@ -37,9 +37,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Shader GreyscaleShader;
     [SerializeField] Shader NormalShader;
 
-    [Header("SceneLoading")]
-    [SerializeField] string[] Scenes;
-    [SerializeField] Vector3[] StartPositions;
 
 
 
@@ -203,7 +200,6 @@ public class PlayerController : MonoBehaviour
     public void LoadScene(int id)
     {
         SceneManager.LoadScene(id);
-        transform.position = StartPositions[id];
         isInvisible = false;
     }
 }

@@ -15,11 +15,6 @@ public class dialogueManager : MonoBehaviour
 
     string currentText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     public bool End()
     {
