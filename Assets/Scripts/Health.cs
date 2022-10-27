@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public bool isPlayer;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float knockBack;
+
+    [SerializeField] Image Heart1;
+    [SerializeField] Image Heart2;
+    [SerializeField] Image Heart3;
     [Header("Dont set these in inspector, but in their controller scripts")]
     public int maxHealth=1000;
     public int healthValue=1000;
     SpriteRenderer sR;
-  
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +53,7 @@ public class Health : MonoBehaviour
             if (isPlayer)
             {
                 GetComponent<PlayerController>().Die();
+                UpdateHealthBar();
             }
             else
             {
@@ -54,14 +61,17 @@ public class Health : MonoBehaviour
             }
             
         }
-        else
+        else if(isPlayer)
         {
             UpdateHealthBar();
         }
 
     }
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
+        Heart1.enabled = healthValue >= 1 ? true : false;
+        Heart2.enabled = healthValue >= 2 ? true : false;
+        Heart3.enabled = healthValue >= 3 ? true : false;
 
     }
     IEnumerator ColourFlash( bool heal)

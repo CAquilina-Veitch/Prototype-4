@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.95, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2078073230148249144
 MonoBehaviour:
@@ -199,6 +199,9 @@ MonoBehaviour:
   isPlayer: 0
   rb: {fileID: 7526098401673590209}
   knockBack: 4
+  Heart1: {fileID: 0}
+  Heart2: {fileID: 0}
+  Heart3: {fileID: 0}
   maxHealth: 1000
   healthValue: 1000
 --- !u!70 &5059638830304793185

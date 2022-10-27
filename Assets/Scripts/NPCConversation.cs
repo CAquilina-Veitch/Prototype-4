@@ -10,6 +10,8 @@ public class NPCConversation : MonoBehaviour
     [SerializeField] string[] HaveGivenItemDialogue;
     string[] currentDialogue;
 
+    [SerializeField] GameObject indicator;
+
      
 
     [Header("QuestAttributes")]
@@ -61,12 +63,21 @@ public class NPCConversation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        reachable = true; 
+        reachable = true;
+        if (indicator != null)
+        {
+            indicator.active = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         reachable = false;
+        if (indicator != null)
+        {
+            indicator.active = false;
+        }
     }
+
     void NextText()
     {
         //Debug.Log($"{dialogue[nextDialogue]} words, {nextDialogue} number, {dialogue.Length} length");
@@ -96,7 +107,7 @@ public class NPCConversation : MonoBehaviour
     {
         Inventory playerInv = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 
-        if(playerInv.itemNum(requestedItem)>= requestedQuantity)
+        if(playerInv.itemNum(requestedItem)>= requestedQuantity&&!ItemGiven)
         {
             playerInv.changeItem(requestedItem, -requestedQuantity);
             ItemGiven = true;

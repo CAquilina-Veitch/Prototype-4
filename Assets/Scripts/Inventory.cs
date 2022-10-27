@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public enum item { Apple, Medicine, Key }
 
 public class Inventory : MonoBehaviour
@@ -8,6 +9,11 @@ public class Inventory : MonoBehaviour
     public int appleCount;
     public int medicineCount;
     public int keyCount;
+
+    [SerializeField] Text Apple;
+    [SerializeField] Text Medicine;
+    [SerializeField] Text Key;
+
 
     public int itemNum(item id)
     {
@@ -29,15 +35,22 @@ public class Inventory : MonoBehaviour
                 appleCount += change;
                 break;
             case item.Medicine:
-                medicineCount = change > 0 ? 1 : 0;
+                medicineCount += change;
                 break;
             case item.Key:
                 keyCount = change > 0 ? 1 : 0;
                 break;
         }
+        refreshUI();
     }
 
+    void refreshUI()
+    {
+        Apple.text = appleCount.ToString();
+        Medicine.text = medicineCount.ToString();
+        Key.text = keyCount.ToString();
 
+    }
 
     // Start is called before the first frame update
     void Start()

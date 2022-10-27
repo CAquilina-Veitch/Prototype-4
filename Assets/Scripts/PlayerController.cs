@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Health healthScript;
     [SerializeField] Inventory inv;
     [SerializeField] DamagingHitbox dmgHitbox;
+    [SerializeField] dialogueManager dM;
+    [SerializeField] Image invisBar;
 
 
     [Header("Animations")]
@@ -74,13 +77,13 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = velocity;
 
-        if (Input.GetKeyDown(KeyCode.Q)&& inv.medicineCount>0)
+        if (Input.GetKeyDown(KeyCode.E)&& inv.medicineCount>0)
         {
             //Use Healing item
             healthScript.HealthChange(3);
             inv.changeItem(item.Medicine,-1);
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //turn invisible
             isInvisible = !isInvisible;
@@ -183,7 +186,7 @@ public class PlayerController : MonoBehaviour
         deathMultiplier = 0;
 
         yield return new WaitForSeconds(1);
-        transform.position = Vector3.zero;
+        transform.position = spawnpoint;
         
         foreach (CapsuleCollider2D hitbox in GetComponents<CapsuleCollider2D>())
         {
@@ -192,18 +195,21 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 1;
         anim.SetTrigger("Respawn");
         healthScript.HealthChange(10000);
+        healthScript.UpdateHealthBar();
         deathMultiplier = 1;
 
 
     }
     void refreshInvisBar()
     {
-
+        invisBar.fillAmount = invisTime / invisibilityDuration;
     }
     public void LoadScene(int id)
     {
         SceneManager.LoadScene(id);
         isInvisible = false;
+        dM.End();
+        dM.End();
     }
     public void Reset()
     {
