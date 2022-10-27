@@ -13,6 +13,7 @@ public class nextScene : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerController>().LoadScene(sceneNum);
+            other.transform.position = tpPos;
         }
     }
 }
