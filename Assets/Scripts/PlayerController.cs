@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     float deathMultiplier = 1;
     public bool isInvisible;
     float invisTime;
+    public Vector3 spawnpoint;
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D rb;
@@ -192,6 +194,7 @@ public class PlayerController : MonoBehaviour
         healthScript.HealthChange(10000);
         deathMultiplier = 1;
 
+
     }
     void refreshInvisBar()
     {
@@ -201,5 +204,11 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.LoadScene(id);
         isInvisible = false;
+    }
+    public void Reset()
+    {
+        Destroy(gameObject);
+        LoadScene(0);
+        //Destroy(gameObject);
     }
 }

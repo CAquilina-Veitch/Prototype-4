@@ -15,6 +15,11 @@ public class ItemScript : MonoBehaviour
 
     private void OnEnable()
     {
+        init();
+    }
+    void init()
+    {
+
         if (id == item.Apple)
         {
             GetComponent<SpriteRenderer>().sprite = apple;
@@ -29,12 +34,14 @@ public class ItemScript : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         size = box.size;
     }
+    
 
 
     private void FixedUpdate()
     {
         box.size = new Vector2(size.x, size.y+0.5f*Mathf.Sin(i));
         i += Time.deltaTime;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,5 +52,10 @@ public class ItemScript : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+    public void Typechange(item to)
+    {
+        id = to;
+        init();
     }
 }

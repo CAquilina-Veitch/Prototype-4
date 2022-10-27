@@ -14,6 +14,7 @@ public class nextScene : MonoBehaviour
         {
             other.GetComponent<PlayerController>().LoadScene(sceneNum);
             other.transform.position = tpPos;
+            other.GetComponent<PlayerController>().spawnpoint = tpPos;
         }
     }
 }
