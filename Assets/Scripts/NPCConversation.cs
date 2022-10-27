@@ -18,7 +18,7 @@ public class NPCConversation : MonoBehaviour
     
     [SerializeField] item requestedItem;
     [SerializeField] int requestedQuantity;
-    bool ItemGiven;
+    public bool ItemGiven;
 
 
 

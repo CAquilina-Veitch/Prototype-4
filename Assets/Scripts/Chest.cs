@@ -8,10 +8,12 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player" && Input.GetKeyDown(KeyCode.Mouse1))
+        if (other.tag == "Player" && Input.GetKey(KeyCode.Mouse1))
         {
-            Instantiate(key);
             Destroy(gameObject);
+            Instantiate(key);
+            Debug.Log(this + "Spawned");
+            
         }
     }
 

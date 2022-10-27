@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] DamagingHitbox dmgHitbox;
     [SerializeField] dialogueManager dM;
     [SerializeField] Image invisBar;
+    [SerializeField] GameObject WinObject;
+    [SerializeField] Text WinText;
 
 
     [Header("Animations")]
@@ -216,5 +218,15 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         LoadScene(0);
         //Destroy(gameObject);
+    }
+    public void Win(int quests)
+    {
+        deathMultiplier = 0;
+        jumpHeight = 0;
+        speed = 0;
+        rb.gravityScale = 0;
+        rb.velocity = Vector3.zero;
+        //WinObject.active = true;
+        dM.Next($"Congratulations! You won. You managed to complete {quests} of 3 quests!");
     }
 }

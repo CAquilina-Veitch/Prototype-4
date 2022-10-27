@@ -107,7 +107,7 @@ public class EnemyScript : MonoBehaviour
         anim.SetTrigger("Die");
         //drop item
         GameObject itemobj = Instantiate(itemDropPrefab,transform.position,Quaternion.identity);
-        int temp = Random.Range(0, 4);
+        int temp = Random.Range(0, 3);
         item _temp = temp == 0 ? item.Medicine : item.Apple;
         itemobj.GetComponent<ItemScript>().Typechange(_temp);
         Destroy(gameObject);
