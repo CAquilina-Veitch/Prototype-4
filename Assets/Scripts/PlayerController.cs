@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Image invisBar;
     [SerializeField] GameObject WinObject;
     [SerializeField] Text WinText;
-
+    bool pause;
+    [SerializeField] GameObject pauseScreen;
 
     [Header("Animations")]
     bool wasGrounded;
@@ -79,11 +80,9 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = velocity;
 
-        if (Input.GetKeyDown(KeyCode.E)&& inv.medicineCount>0)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            //Use Healing item
-            healthScript.HealthChange(3);
-            inv.changeItem(item.Medicine,-1);
+            Medicine();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -103,13 +102,40 @@ public class PlayerController : MonoBehaviour
             //attack
             StartCoroutine(attackHitbox());
         }
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
 
 
 
 
         // 
     }
+    public void Pause()
+    {
+        pause = !pause;
+        if (pause)
+        {
+            pauseScreen.active = true;
+            Time.timeScale = 0.00001f;
+        }
+        else
+        {
+            pauseScreen.active = false;
+            Time.timeScale = 1f;
+        }
+    }
+    public void Medicine()
+    {
+        if(inv.medicineCount > 0)
+        {
+            //Use Healing item
+            healthScript.HealthChange(3);
+            inv.changeItem(item.Medicine, -1);
+        }
+    }
+
     private void FixedUpdate()
     {
         Vector3 offset = -transform.up * 0.75f*transform.localScale.x;
@@ -213,7 +239,7 @@ public class PlayerController : MonoBehaviour
         dM.End();
         dM.End();
     }
-    public void Reset()
+    public void Restart()
     {
         Destroy(gameObject);
         LoadScene(0);
@@ -228,5 +254,9 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector3.zero;
         //WinObject.active = true;
         dM.Next($"Congratulations! You won. You managed to complete {quests} of 3 quests!");
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
