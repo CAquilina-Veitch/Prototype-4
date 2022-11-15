@@ -18,9 +18,9 @@ public class QuestManager : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse1)){
             int temp1 = dog.ItemGiven ? 1 : 0;
             int temp2 = beggar.ItemGiven ? 1 : 0;
-            int temp3 = beggar.ItemGiven ? 1 : 0;
+            int temp3 = door.ItemGiven ? 1 : 0;
             questsCompleted = temp1 + temp2 + temp3;
-            if (beggar.ItemGiven)
+            if (door.ItemGiven)
             {
                 GetComponent<BoxCollider2D>().enabled = true;
                 indicator.active = true;
