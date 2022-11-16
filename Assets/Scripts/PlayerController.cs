@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         DontDestroyOnLoad(this.gameObject);
         SpriteMaterial.shader = NormalShader;
@@ -234,8 +234,12 @@ public class PlayerController : MonoBehaviour
     }
     public void LoadScene(int id)
     {
-        SceneManager.LoadScene(id);
         isInvisible = false;
+        refreshInvisBar();
+        SpriteMaterial.shader = NormalShader;
+
+        SceneManager.LoadScene(id);
+        
         dM.End();
         dM.End();
     }
