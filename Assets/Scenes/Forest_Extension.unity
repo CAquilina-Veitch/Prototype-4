@@ -2477,15 +2477,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: sceneNum
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.51
+      value: -9.53
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2525,7 +2525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5104010404614965270, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_Name
-      value: Wall Right
+      value: Left wall
       objectReference: {fileID: 0}
     - target: {fileID: 5104010404614965270, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_Layer
@@ -7984,8 +7984,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 2.92, z: -10}
-  clampMin: {x: 0, y: 0}
-  clampMax: {x: 47, y: 15}
+  clampMin: {x: -0.15, y: 0}
+  clampMax: {x: 79, y: 15}
 --- !u!1001 &1474047529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8746,7 +8746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: sceneNum
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_RootOrder
@@ -9571,7 +9571,7 @@ Transform:
   - {fileID: 272840489}
   - {fileID: 281844572}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1905837202
 PrefabInstance:

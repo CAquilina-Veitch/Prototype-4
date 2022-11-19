@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         DontDestroyOnLoad(this.gameObject);
+        gameObject.active = true;
         SpriteMaterial.shader = NormalShader;
         invisTime = invisibilityDuration;
         refreshInvisBar();

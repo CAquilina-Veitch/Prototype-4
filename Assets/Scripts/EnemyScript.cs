@@ -72,7 +72,16 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                currentDirection = -currentDirection;
+                RaycastHit2D floor = Physics2D.Raycast(transform.position+ new Vector3(-currentDirection * 0.6f, 0), Vector2.down, 1.11f);
+                if (floor.collider != null)
+                {
+                    if (floor.collider.tag == "GroundCollision")
+                    {
+                        currentDirection = -currentDirection;
+                    }
+
+                }
+                Debug.Log(floor.collider);
 
             }
         }
@@ -81,7 +90,7 @@ public class EnemyScript : MonoBehaviour
 
 
         velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime *10);
-        rb.velocity = velocity;
+        rb.velocity = new Vector3(velocity.x,rb.velocity.y);
 
         sR.flipX = rb.velocity.x > 0 ? true : false;
 

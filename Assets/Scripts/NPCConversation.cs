@@ -10,6 +10,8 @@ public class NPCConversation : MonoBehaviour
     [SerializeField] string[] HaveGivenItemDialogue;
     string[] currentDialogue;
 
+    
+
     [SerializeField] GameObject indicator;
 
      
@@ -63,18 +65,26 @@ public class NPCConversation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        reachable = true;
-        if (indicator != null)
+        if (collision.tag == "Player")
         {
-            indicator.active = true;
+            reachable = true;
+            if (indicator != null)
+            {
+                indicator.active = true;
+            }
         }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        reachable = false;
-        if (indicator != null)
+        if (collision.tag == "Player")
         {
-            indicator.active = false;
+            reachable = false;
+            if (indicator != null)
+            {
+                indicator.active = false;
+            }
+            CancelDialogue();
         }
     }
 
@@ -118,6 +128,12 @@ public class NPCConversation : MonoBehaviour
             return false;
         }
 
+    }
+    void CancelDialogue()
+    {
+        dM.End();
+        dM.End();
+        dM.End();
     }
 
 }
