@@ -76,6 +76,7 @@ public class Health : MonoBehaviour
     }
     IEnumerator ColourFlash( bool heal)
     {
+        yield return new WaitForSeconds(0.25f);
         sR.color = heal ? Color.green : Color.red;
         yield return new WaitForSeconds(0.25f);
         sR.color = Color.white;

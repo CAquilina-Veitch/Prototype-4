@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public bool isInvisible;
     float invisTime;
     public Vector3 spawnpoint;
+    bool canJump = true;
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D rb;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject pauseScreen;
 
     [Header("Animations")]
-    bool wasGrounded;
+    bool wasGrounded = false;
     [SerializeField] Material SpriteMaterial;
     [SerializeField] Shader GreyscaleShader;
     [SerializeField] Shader NormalShader;
@@ -58,6 +59,8 @@ public class PlayerController : MonoBehaviour
         refreshInvisBar();
         healthScript.healthValue = maxHealth;
         healthScript.maxHealth = maxHealth;
+        canJump = true;
+        anim.SetTrigger("Land");
     }
 
     // Update is called once per frame
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             //Debug.Log(grounded);
-            if (grounded)
+            if (grounded&& canJump)
             {
                 velocity.y = jumpHeight*deathMultiplier;
                 anim.SetTrigger("Jump");
@@ -147,6 +150,7 @@ public class PlayerController : MonoBehaviour
         if (groundCheck1.collider!=null || groundCheck2.collider != null)
         {
             grounded = true;
+            
         }
         else
         {
@@ -193,13 +197,16 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("Attack");
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = true;
         deathMultiplier = 0;
+        canJump = false;
         yield return new WaitForSeconds(0.7f);
+        canJump = true;
         deathMultiplier = 1;
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = false;
     }
     public void Die()
     {
         StartCoroutine(death());
+        canJump = true;
         
         //teleport back to the place.
     }
@@ -243,12 +250,14 @@ public class PlayerController : MonoBehaviour
         
         dM.End();
         dM.End();
+        canJump = true;
     }
     public void Restart()
     {
         Destroy(gameObject);
         LoadScene(0);
         //Destroy(gameObject);
+        canJump = true;
     }
     public void Win(int quests)
     {
