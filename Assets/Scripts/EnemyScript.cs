@@ -62,8 +62,8 @@ public class EnemyScript : MonoBehaviour
         {
             //check for walk off edge
             RaycastHit2D edgeCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down, 1.11f);
-            Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down*1.11f, Color.cyan, 5);
-            Debug.Log(edgeCheck.collider);
+            //Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down*1.11f, Color.cyan, 5);
+            //Debug.Log(edgeCheck.collider);
             if (edgeCheck.collider != null)
             {
                 if (edgeCheck.collider.tag != "GroundCollision")
@@ -75,18 +75,18 @@ public class EnemyScript : MonoBehaviour
             else
             {
                 RaycastHit2D floor = Physics2D.Raycast(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down, 1.6f);
-                Debug.DrawRay(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down*1.6f, Color.green, 5);
-                Debug.LogError("AAAAAAAAAAAAAAAAA" + floor.collider);
+                //Debug.DrawRay(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down*1.6f, Color.green, 5);
+                //Debug.LogError("AAAAAAAAAAAAAAAAA" + floor.collider);
                 if (floor.collider != null)
                 {
-                    Debug.LogError("HGHGGGGGG" + floor.collider.tag);
+                    //Debug.LogError("HGHGGGGGG" + floor.collider.tag);
                     if (floor.collider.tag == "GroundCollision")
                     {
                         currentDirection = -currentDirection;
                     }
 
                 }
-                Debug.Log(floor.collider);
+                //Debug.Log(floor.collider);
 
             }
         }
@@ -112,8 +112,9 @@ public class EnemyScript : MonoBehaviour
     IEnumerator attackHitbox()
     {
         anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(attackAnimationTime*0.5f);
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = true;
-        yield return new WaitForSeconds(attackAnimationTime);
+        yield return new WaitForSeconds(attackAnimationTime * 0.5f);
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = false;
     }
     public void Die()

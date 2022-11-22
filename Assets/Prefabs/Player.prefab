@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 42
-  m_Sprite: {fileID: 21300000, guid: 7ce374744ef78bb41a48f55a18982248, type: 3}
+  m_Sprite: {fileID: 910494241, guid: 1fdf0380535d3eb41aa2fc3c9af2b60e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -198,8 +198,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.65}
-  m_Size: {x: 0.4, y: 0.2}
+  m_Offset: {x: 0.0000000023807005, y: -0.65694}
+  m_Size: {x: 0.40000007, y: 0.2138798}
   m_Direction: 1
 --- !u!70 &8327041879949581269
 CapsuleCollider2D:
@@ -214,8 +214,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.01}
-  m_Size: {x: 0.6, y: 1.5}
+  m_Offset: {x: 0, y: -0.216242}
+  m_Size: {x: 0.6, y: 1.0475178}
   m_Direction: 0
 --- !u!95 &8327041879949581271
 Animator:
@@ -257,6 +257,7 @@ MonoBehaviour:
   vertVel: 0
   velocity: {x: 0, y: 0}
   isInvisible: 0
+  spawnpoint: {x: 0, y: 0, z: 0}
   rb: {fileID: 8327041879949581270}
   groundCheckMask:
     serializedVersion: 2
@@ -266,11 +267,14 @@ MonoBehaviour:
   healthScript: {fileID: 8327041879949581275}
   inv: {fileID: 8327041879949581268}
   dmgHitbox: {fileID: 601702213077142259}
+  dM: {fileID: 0}
+  invisBar: {fileID: 0}
+  WinObject: {fileID: 0}
+  WinText: {fileID: 0}
+  pauseScreen: {fileID: 0}
   SpriteMaterial: {fileID: 2100000, guid: b47b385f56fc19941abdf04b9295feeb, type: 2}
   GreyscaleShader: {fileID: 4800000, guid: 0ac42ee358fdc8a45a69171bdde10e05, type: 3}
   NormalShader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  Scenes: []
-  StartPositions: []
 --- !u!114 &8327041879949581268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +290,9 @@ MonoBehaviour:
   appleCount: 0
   medicineCount: 0
   keyCount: 0
+  Apple: {fileID: 0}
+  Medicine: {fileID: 0}
+  Key: {fileID: 0}
 --- !u!114 &8327041879949581275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,5 +308,8 @@ MonoBehaviour:
   isPlayer: 1
   rb: {fileID: 8327041879949581270}
   knockBack: 1
+  Heart1: {fileID: 0}
+  Heart2: {fileID: 0}
+  Heart3: {fileID: 0}
   maxHealth: 1000
   healthValue: 1000
