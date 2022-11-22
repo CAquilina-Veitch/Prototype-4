@@ -9,6 +9,8 @@ public class EnemyScript : MonoBehaviour
     public int speed;
     public int damage;
     [SerializeField] float attackAnimationTime;
+    [SerializeField] Vector3 offset;
+    [SerializeField] float hitboxWidth;
 
 
 
@@ -41,9 +43,9 @@ public class EnemyScript : MonoBehaviour
 
 
         //check for wall
-        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * 0.6f, 0), Vector2.down, 0.01f);
-        //Debug.DrawRay(transform.position + new Vector3(currentDirection*0.6f, 0), Vector2.down * 0.01f, Color.magenta, 5);
-
+        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down, 0.1f);
+        //Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down * 0.1f, Color.magenta, 5);
+        //Debug.Log(wallCheck.collider);
         if (wallCheck.collider != null)
         {
             currentDirection = -currentDirection;
@@ -59,9 +61,9 @@ public class EnemyScript : MonoBehaviour
         else
         {
             //check for walk off edge
-            RaycastHit2D edgeCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * 0.6f, 0), Vector2.down, 1.11f);
-            //Debug.DrawRay(transform.position + new Vector3(currentDirection, 0), Vector2.down, Color.cyan, 5);
-
+            RaycastHit2D edgeCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down, 1.11f);
+            Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down*1.11f, Color.cyan, 5);
+            Debug.Log(edgeCheck.collider);
             if (edgeCheck.collider != null)
             {
                 if (edgeCheck.collider.tag != "GroundCollision")
@@ -72,9 +74,12 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floor = Physics2D.Raycast(transform.position+ new Vector3(-currentDirection * 0.6f, 0), Vector2.down, 1.11f);
+                RaycastHit2D floor = Physics2D.Raycast(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down, 1.6f);
+                Debug.DrawRay(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down*1.6f, Color.green, 5);
+                Debug.LogError("AAAAAAAAAAAAAAAAA" + floor.collider);
                 if (floor.collider != null)
                 {
+                    Debug.LogError("HGHGGGGGG" + floor.collider.tag);
                     if (floor.collider.tag == "GroundCollision")
                     {
                         currentDirection = -currentDirection;
@@ -92,7 +97,7 @@ public class EnemyScript : MonoBehaviour
         velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime *10);
         rb.velocity = new Vector3(velocity.x,rb.velocity.y);
 
-        sR.flipX = rb.velocity.x > 0 ? true : false;
+        sR.flipX = rb.velocity.x > 0 ? false : true;
 
 
     }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078073230148249147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,7 +104,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.66, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2078073230148249146}
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -45738432, guid: f54aa463780747b44b658564f8ece89f, type: 3}
+  m_Sprite: {fileID: 1327848321, guid: a1cb5ae94a7cbc04fa06e7691b4c06ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -175,9 +175,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
-  speed: 2
+  speed: 1
   damage: 1
   attackAnimationTime: 0.5
+  offset: {x: 0, y: -0.16, z: 0}
+  hitboxWidth: 0.88
   anim: {fileID: 2078073230454956545}
   dmgHitbox: {fileID: 2078073230148249144}
   itemDropPrefab: {fileID: 2451149810113814889, guid: 14a297aaa73d33046ba551e7937abeec, type: 3}
@@ -217,8 +219,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13455248}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: -0.24046433}
+  m_Size: {x: 1.1653259, y: 1.5528085}
   m_Direction: 0
 --- !u!95 &2078073230454956545
 Animator:
