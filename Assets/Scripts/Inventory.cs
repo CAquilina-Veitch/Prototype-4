@@ -14,6 +14,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] Text Medicine;
     [SerializeField] Text Key;
 
+    public bool appleQuestDone;
+    public bool medicineQuestDone;
+    public bool keyQuestDone;
+
+    public int questsCompleted;
 
     public int itemNum(item id)
     {
@@ -52,15 +57,44 @@ public class Inventory : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void completeQuest(item id)
     {
-        
+        switch (id)
+        {
+            case item.Apple:
+                appleQuestDone = true;
+                break;
+            case item.Medicine:
+                medicineQuestDone = true;
+                break;
+            case item.Key:
+                keyQuestDone = true;
+                break;
+        }
+    }
+    public bool checkQuest(item id)
+    {
+        switch (id)
+        {
+            case item.Apple:
+                return appleQuestDone;
+            case item.Medicine:
+                return medicineQuestDone;
+            case item.Key:
+                return keyQuestDone;
+            default:
+                return false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public int questTally()
     {
-        
+        int temp1 = appleQuestDone ? 1 : 0;
+        int temp2 = medicineQuestDone ? 1 : 0;
+        int temp3 = keyQuestDone ? 1 : 0;
+        questsCompleted = temp1 + temp2 + temp3;
+        return questsCompleted;
     }
+
 }

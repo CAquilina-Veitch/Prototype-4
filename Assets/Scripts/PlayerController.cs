@@ -257,8 +257,7 @@ public class PlayerController : MonoBehaviour
         speed = 0;
         rb.gravityScale = 0;
         rb.velocity = Vector3.zero;
-        //WinObject.active = true;
-        dM.Next($"Congratulations! You won. You managed to complete {quests} of 3 quests!");
+        dM.Next($"Congratulations! You won. You managed to complete {inv.questTally()} of 3 quests!");
     }
     public void Quit()
     {

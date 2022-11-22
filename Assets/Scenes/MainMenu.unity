@@ -754,6 +754,10 @@ PrefabInstance:
       propertyPath: Medicine
       value: 
       objectReference: {fileID: 1328547872}
+    - target: {fileID: 8327041879949581268, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
+      propertyPath: keyCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8327041879949581275, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
       propertyPath: Heart1
       value: 

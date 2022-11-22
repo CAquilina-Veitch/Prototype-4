@@ -18,7 +18,7 @@ public class NPCConversation : MonoBehaviour
 
     [Header("QuestAttributes")]
     
-    [SerializeField] item requestedItem;
+    [SerializeField] public item requestedItem;
     [SerializeField] int requestedQuantity;
     public bool ItemGiven;
 
@@ -121,6 +121,7 @@ public class NPCConversation : MonoBehaviour
         {
             playerInv.changeItem(requestedItem, -requestedQuantity);
             ItemGiven = true;
+            playerInv.completeQuest(requestedItem);
             return true;
         }
         else
