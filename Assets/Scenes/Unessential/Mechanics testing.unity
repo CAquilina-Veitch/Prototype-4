@@ -547,18 +547,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4990342606164533607, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8327041879949581229, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581266, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 910494241, guid: 1fdf0380535d3eb41aa2fc3c9af2b60e, type: 3}
     - target: {fileID: 8327041879949581267, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -602,30 +594,6 @@ PrefabInstance:
     - target: {fileID: 8327041879949581267, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581269, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0475178
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581269, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.216242
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581274, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Size.x
-      value: 0.40000007
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581274, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Size.y
-      value: 0.2138798
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581274, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0000000023807005
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327041879949581274, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.65694
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ead9b62c13cdf54d8b5ab42b0646e6e, type: 3}
