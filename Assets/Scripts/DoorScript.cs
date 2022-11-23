@@ -26,6 +26,7 @@ public class DoorScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                Debug.Log("1");
                 if (other.GetComponent<Inventory>().keyQuestDone&&!locked)
                 {
                     Debug.Log("1");
