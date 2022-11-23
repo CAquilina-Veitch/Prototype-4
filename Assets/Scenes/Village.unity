@@ -2715,7 +2715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99773982d793b274fadaf7b43e3fca9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOffset: {x: 0, y: 2.92, z: -10}
+  cameraOffset: {x: 0, y: 0, z: -10}
   clampMin: {x: -7, y: 0}
   clampMax: {x: 7, y: 100}
 --- !u!1001 &936483667

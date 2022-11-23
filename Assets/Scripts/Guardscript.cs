@@ -44,8 +44,9 @@ public class Guardscript : MonoBehaviour
 
     IEnumerator Caught(Collider2D player, Vector3 diff)
     {
+        Debug.Log("CAUGHT");
         dM.Next(WarningDialogue);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         dM.End();
         dM.End();
         // send to pos
