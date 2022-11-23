@@ -27,16 +27,16 @@ public class DoorScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse1))
             {
-                Debug.Log("1");
+                //Debug.Log("1");
                 
                 if (other.GetComponent<Inventory>().keyQuestDone&&!locked)
                 {
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     
                     other.GetComponent<PlayerController>().LoadScene(treasureSceneNum);
                     other.transform.position = tpPos;
                     other.GetComponent<PlayerController>().spawnpoint = tpPos;
-                    Debug.Log("3");
+                    //Debug.Log("3");
                 }
             }
         }
