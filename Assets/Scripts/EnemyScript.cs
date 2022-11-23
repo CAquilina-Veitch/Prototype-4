@@ -124,6 +124,8 @@ public class EnemyScript : MonoBehaviour
     }
     public void Die()
     {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<CapsuleCollider2D>().enabled = false;
         //drop item
         GameObject itemobj = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
         int temp = Random.Range(0, 3);
