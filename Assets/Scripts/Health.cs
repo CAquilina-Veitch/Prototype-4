@@ -44,6 +44,7 @@ public class Health : MonoBehaviour
             //take damage
             healthValue += dmg;
             rb.velocity = Vector3.zero;
+
         }
 
         if (healthValue <= 0)
@@ -59,11 +60,15 @@ public class Health : MonoBehaviour
             {
                 GetComponent<EnemyScript>().Die();
             }
-            
+
         }
-        else if(isPlayer)
+        else
         {
-            UpdateHealthBar();
+            if (isPlayer)
+            {
+                UpdateHealthBar();
+            }
+            StartCoroutine(HurtDelay());
         }
 
     }
@@ -76,12 +81,19 @@ public class Health : MonoBehaviour
     }
     IEnumerator ColourFlash( bool heal)
     {
+        
         yield return new WaitForSeconds(0.25f);
         sR.color = heal ? Color.green : Color.red;
         yield return new WaitForSeconds(0.25f);
         sR.color = Color.white;
+        GetComponent<Animator>().ResetTrigger("Hurt");
     }
+    IEnumerator HurtDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<Animator>().SetTrigger("Hurt");
 
+    }
 
 
 

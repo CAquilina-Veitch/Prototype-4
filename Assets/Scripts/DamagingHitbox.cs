@@ -23,18 +23,19 @@ public class DamagingHitbox : MonoBehaviour
             i = 0;
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            hitbox.offset = Input.GetAxisRaw("Horizontal") > 0? new Vector2(0.8f,0): new Vector2(-0.8f, 0);
-        }
-
-        if (Input.GetAxisRaw("Horizontal") > 0)
-        {
-
-        }
+        
 
 
     }
+
+    private void Update()
+    {
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            hitbox.offset = Input.GetAxisRaw("Horizontal") > 0 ? new Vector2(0.8f, 0) : new Vector2(-0.8f, 0);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (i == 0)

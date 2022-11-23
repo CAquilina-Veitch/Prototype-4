@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
     [Header("MovingStats")]
     int currentDirection=-1;
     Vector2 velocity;
+    bool dead = false;
 
     [Header("Dependencies")]
     [SerializeField] Animator anim;
@@ -39,17 +40,17 @@ public class EnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (dead) { return; }
 
 
         //check for wall
-        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down, 0.1f);
+        RaycastHit2D wallCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0) + offset, Vector2.down, 0.1f);
         //Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down * 0.1f, Color.magenta, 5);
         //Debug.Log(wallCheck.collider);
         if (wallCheck.collider != null)
         {
             currentDirection = -currentDirection;
-            if(wallCheck.collider.tag == "Player")
+            if (wallCheck.collider.tag == "Player")
             {
                 if (!wallCheck.collider.GetComponent<PlayerController>().isInvisible)
                 {
@@ -61,7 +62,7 @@ public class EnemyScript : MonoBehaviour
         else
         {
             //check for walk off edge
-            RaycastHit2D edgeCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down, 1.11f);
+            RaycastHit2D edgeCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0) + offset, Vector2.down, 1.11f);
             //Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 0)  + offset, Vector2.down*1.11f, Color.cyan, 5);
             //Debug.Log(edgeCheck.collider);
             if (edgeCheck.collider != null)
@@ -74,7 +75,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                RaycastHit2D floor = Physics2D.Raycast(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down, 1.6f);
+                RaycastHit2D floor = Physics2D.Raycast(transform.position - (new Vector3(currentDirection * hitboxWidth, 0) + offset), Vector2.down, 1.6f);
                 //Debug.DrawRay(transform.position - (new Vector3(currentDirection * hitboxWidth, 0)  + offset), Vector2.down*1.6f, Color.green, 5);
                 //Debug.LogError("AAAAAAAAAAAAAAAAA" + floor.collider);
                 if (floor.collider != null)
@@ -94,16 +95,12 @@ public class EnemyScript : MonoBehaviour
 
 
 
-        velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime *10);
-        rb.velocity = new Vector3(velocity.x,rb.velocity.y);
+        velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime * 10);
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y);
 
         sR.flipX = rb.velocity.x > 0 ? false : true;
 
 
-    }
-    public void takeDamage()
-    {
-        anim.SetTrigger("Damage");
     }
     void attack()
     {
@@ -113,20 +110,32 @@ public class EnemyScript : MonoBehaviour
     {
         anim.SetTrigger("Attack");
         yield return new WaitForSeconds(attackAnimationTime*0.5f);
+        if (dead) { dmgHitbox.GetComponent<BoxCollider2D>().enabled = false; yield break; }
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = true;
         yield return new WaitForSeconds(attackAnimationTime * 0.5f);
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = false;
     }
     public void Die()
     {
-        anim.SetTrigger("Die");
         //drop item
-        GameObject itemobj = Instantiate(itemDropPrefab,transform.position,Quaternion.identity);
+        GameObject itemobj = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
         int temp = Random.Range(0, 3);
         item _temp = temp == 0 ? item.Medicine : item.Apple;
         itemobj.GetComponent<ItemScript>().Typechange(_temp);
-        Destroy(gameObject);
+        GetComponent<Health>().enabled = false;
 
+        StartCoroutine(Death());
+        this.enabled = false;
+        
+
+    }
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(0.3f);
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(3);
+
+        Destroy(gameObject);
     }
 
 

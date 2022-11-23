@@ -289,10 +289,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appleCount: 0
   medicineCount: 0
-  keyCount: 0
+  keyCount: 3
   Apple: {fileID: 0}
   Medicine: {fileID: 0}
   Key: {fileID: 0}
+  appleQuestDone: 0
+  medicineQuestDone: 0
+  keyQuestDone: 0
+  questsCompleted: 0
 --- !u!114 &8327041879949581275
 MonoBehaviour:
   m_ObjectHideFlags: 0
