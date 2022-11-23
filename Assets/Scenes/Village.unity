@@ -4219,7 +4219,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 837496070, guid: 3917e2afeff2e1945904b406b315a7b0, type: 3}
   m_Color: {r: 0.79579145, g: 1, b: 0.7421383, a: 1}
   m_FlipX: 0
@@ -4260,8 +4260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e438b532039f5948b23c08a40de5ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locked: 1
   tpPos: {x: 0, y: 0, z: 0}
-  treasureSceneNum: 0
+  treasureSceneNum: 6
   indicator: {fileID: 8228209727995148929}
 --- !u!65 &1481414029
 BoxCollider:
