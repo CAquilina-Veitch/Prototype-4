@@ -262,11 +262,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Win(int quests)
     {
-        deathMultiplier = 0;
-        jumpHeight = 0;
-        speed = 0;
-        rb.gravityScale = 0;
-        rb.velocity = Vector3.zero;
+        //deathMultiplier = 0;
+        //jumpHeight = 0;
+        //speed = 0;
+        //rb.gravityScale = 0;
+        //rb.velocity = Vector3.zero;
         dM.Next($"Congratulations! You won. You managed to complete {inv.questTally()} of 3 quests!");
     }
     public void Quit()
