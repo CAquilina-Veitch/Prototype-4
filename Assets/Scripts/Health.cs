@@ -86,7 +86,10 @@ public class Health : MonoBehaviour
         sR.color = heal ? Color.green : Color.red;
         yield return new WaitForSeconds(0.25f);
         sR.color = Color.white;
-        GetComponent<Animator>().ResetTrigger("Hurt");
+        if (!heal)
+        {
+            GetComponent<Animator>().ResetTrigger("Hurt");
+        }
     }
     IEnumerator HurtDelay()
     {
