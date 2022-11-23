@@ -4261,7 +4261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locked: 1
-  tpPos: {x: 0, y: 0, z: 0}
+  tpPos: {x: -6.3, y: -0.5, z: 0}
   treasureSceneNum: 6
   indicator: {fileID: 8228209727995148929}
 --- !u!61 &1481414029
