@@ -130,7 +130,7 @@ public class EnemyScript : MonoBehaviour
         item _temp = temp == 0 ? item.Medicine : item.Apple;
         itemobj.GetComponent<ItemScript>().Typechange(_temp);
         GetComponent<Health>().enabled = false;
-
+        anim.SetTrigger("Die");
         StartCoroutine(Death());
         this.enabled = false;
         
@@ -138,8 +138,6 @@ public class EnemyScript : MonoBehaviour
     }
     IEnumerator Death()
     {
-        yield return new WaitForSeconds(0.3f);
-        anim.SetTrigger("Die");
         yield return new WaitForSeconds(3);
 
         Destroy(gameObject);

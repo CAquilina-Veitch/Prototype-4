@@ -242,6 +242,7 @@ public class PlayerController : MonoBehaviour
     }
     public void LoadScene(int id)
     {
+        Debug.Log("LOADING " + id);
         isInvisible = false;
         refreshInvisBar();
         SpriteMaterial.shader = NormalShader;

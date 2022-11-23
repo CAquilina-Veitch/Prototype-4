@@ -33,9 +33,14 @@ public class ItemScript : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-0.2f, 0.2f), 0.4f);
         box = GetComponent<BoxCollider2D>();
         size = box.size;
+        StartCoroutine(Grabbable());
     }
     
-
+    IEnumerator Grabbable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<CircleCollider2D>().enabled = true;
+    }
 
     private void FixedUpdate()
     {
@@ -46,6 +51,7 @@ public class ItemScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         Debug.Log($"TRiggered by {other.gameObject.name} which has component? {other.GetComponent<Inventory>()}");
         if(other.TryGetComponent(out Inventory inv))
         {
