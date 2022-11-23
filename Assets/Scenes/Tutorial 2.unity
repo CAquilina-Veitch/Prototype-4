@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 0, z: -10}
   clampMin: {x: 0, y: 0}
-  clampMax: {x: 47, y: 15}
+  clampMax: {x: 0, y: 0}
 --- !u!81 &382082557
 AudioListener:
   m_ObjectHideFlags: 0
