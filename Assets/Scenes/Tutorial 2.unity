@@ -1583,6 +1583,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
+      propertyPath: tpPos.x
+      value: -8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
+      propertyPath: tpPos.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: sceneNum
       value: 4
       objectReference: {fileID: 0}
@@ -1728,6 +1736,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
+      propertyPath: tpPos.x
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
+      propertyPath: tpPos.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: sceneNum
       value: 2
       objectReference: {fileID: 0}
@@ -1777,7 +1793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5104010404614965270, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_Name
-      value: Wall Right
+      value: Wall Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}

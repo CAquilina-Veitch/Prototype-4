@@ -5214,11 +5214,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: tpPos.x
-      value: -8
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: tpPos.y
-      value: -2.9
+      value: -2.69
       objectReference: {fileID: 0}
     - target: {fileID: 1387959461, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: sceneNum
