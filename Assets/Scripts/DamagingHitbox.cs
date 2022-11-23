@@ -38,10 +38,13 @@ public class DamagingHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log($"ME {gameObject.name} hit other {other.gameObject.name}");
         if (i == 0)
         {
             if (other.TryGetComponent(out Health health))
             {
+                hitbox.enabled = false;
+
                 //attack
                 i = cooldownTime;
                 health.HealthChange(-damage);

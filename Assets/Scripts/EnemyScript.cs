@@ -18,6 +18,7 @@ public class EnemyScript : MonoBehaviour
     int currentDirection=-1;
     Vector2 velocity;
     bool dead = false;
+    bool canAttack = true;
 
     [Header("Dependencies")]
     [SerializeField] Animator anim;
@@ -55,7 +56,11 @@ public class EnemyScript : MonoBehaviour
                 if (!wallCheck.collider.GetComponent<PlayerController>().isInvisible)
                 {
                     currentDirection = -currentDirection;
-                    attack();
+                    if (canAttack)
+                    {
+                        attack();
+                    }
+                    
                 }
             }
         }
@@ -104,6 +109,7 @@ public class EnemyScript : MonoBehaviour
     }
     void attack()
     {
+        canAttack = false;
         StartCoroutine(attackHitbox());
     }
     IEnumerator attackHitbox()
@@ -114,6 +120,7 @@ public class EnemyScript : MonoBehaviour
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = true;
         yield return new WaitForSeconds(attackAnimationTime * 0.5f);
         dmgHitbox.GetComponent<BoxCollider2D>().enabled = false;
+        canAttack = true;
     }
     public void Die()
     {

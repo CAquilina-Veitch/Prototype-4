@@ -6,7 +6,7 @@ public class Guardscript : MonoBehaviour
 {
     [SerializeField] Transform teleportPosition;
     dialogueManager dM;
-
+    [SerializeField] string WarningDialogue = "You cant be here!!";
     CapsuleCollider2D cc;
 
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class Guardscript : MonoBehaviour
 
     IEnumerator Caught(Collider2D player, Vector3 diff)
     {
-        dM.Next("You cant be here!!");
+        dM.Next(WarningDialogue);
         yield return new WaitForSeconds(1);
         dM.End();
         dM.End();

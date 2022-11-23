@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chest Room.unity
     guid: 709167e7e72311a47956eef8fc161178
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Unessential/Forest.unity
     guid: 3076a444eb39a1a468d4f635e49e42f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Unessential/ReturnVillage.unity
     guid: 2d5354feb7b224f40b6952005f562227
   m_configObjects: {}
