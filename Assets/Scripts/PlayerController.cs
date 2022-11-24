@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
         healthScript.maxHealth = maxHealth;
         canJump = true;
         anim.SetTrigger("Land");
+        Time.timeScale = 1f;
+        pause = false;
     }
 
     // Update is called once per frame

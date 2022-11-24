@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class DoorScript : MonoBehaviour
 {
