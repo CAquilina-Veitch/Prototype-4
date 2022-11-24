@@ -2008,7 +2008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.92
+      value: 19.55
       objectReference: {fileID: 0}
     - target: {fileID: 786529557189918351, guid: 884b0687bbec0e14aa27f8c9b3eb1ddf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4159,7 +4159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraOffset: {x: 0, y: 0, z: -10}
   clampMin: {x: -1.33, y: 0}
-  clampMax: {x: 7, y: 100}
+  clampMax: {x: 10, y: 100}
 --- !u!81 &1922691659
 AudioListener:
   m_ObjectHideFlags: 0

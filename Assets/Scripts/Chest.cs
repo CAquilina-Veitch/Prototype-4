@@ -11,12 +11,19 @@ public class Chest : MonoBehaviour
         if (other.tag == "Player" && Input.GetKey(KeyCode.Mouse1))
         {
             Destroy(gameObject);
-            Instantiate(key);
-            Debug.Log(this + "Spawned");
+            GameObject keyObj = Instantiate(key,transform.position,Quaternion.identity);
+            keyObj.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 3);
+            //Debug.Log(this + "Spawned");
             
         }
     }
-
+    private void OnEnable()
+    {
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().hasGottenChest)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 

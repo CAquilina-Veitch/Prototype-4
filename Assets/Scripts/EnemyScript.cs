@@ -99,14 +99,18 @@ public class EnemyScript : MonoBehaviour
 
         if (canAttack)
         {
-            RaycastHit2D upCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0) + offset, Vector2.up, 1.11f);
-            Debug.DrawRay(transform.position + new Vector3(0, 0.7f) + offset, Vector2.up * 0.3f, Color.cyan, 5);
+            RaycastHit2D upCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection, 0), 1.11f);
+            Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection,0), Color.cyan, 5);
             if (upCheck.collider != null)
             {
                 Debug.Log(upCheck.collider.gameObject.name);
-                if (upCheck.collider.tag != "Player")
-                { 
-                    attack();
+                if (upCheck.collider.tag == "Player")
+                {
+                    if (!upCheck.collider.GetComponent<PlayerController>().isInvisible)
+                    {
+
+                        attack();
+                    }
                 }
             }
                     
@@ -144,6 +148,7 @@ public class EnemyScript : MonoBehaviour
         int temp = Random.Range(0, 3);
         item _temp = temp == 0 ? item.Medicine : item.Apple;
         itemobj.GetComponent<ItemScript>().Typechange(_temp);
+        itemobj.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 3);
         GetComponent<Health>().enabled = false;
         anim.SetTrigger("Die");
         StartCoroutine(Death());

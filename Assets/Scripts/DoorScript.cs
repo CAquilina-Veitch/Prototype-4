@@ -12,6 +12,7 @@ public class DoorScript : MonoBehaviour
 
 
     [SerializeField] GameObject indicator;
+    int warned = -1;
 
     private void Awake()
     {
@@ -30,10 +31,20 @@ public class DoorScript : MonoBehaviour
                 if (other.GetComponent<Inventory>().keyQuestDone&&!locked)
                 {
                     //Debug.Log("2");
+                    if (warned==1)
+                    {
+                        other.GetComponent<PlayerController>().LoadScene(treasureSceneNum);
+                        other.transform.position = tpPos;
+                        other.GetComponent<PlayerController>().spawnpoint = tpPos;
+                    }
+                    else if(warned==-1)
+                    {
+                        GameObject.FindGameObjectWithTag("DialoguePanel").GetComponent<dialogueManager>().Next("Warning! You will not be able to return once entering!");
+                        GameObject.FindGameObjectWithTag("DialoguePanel").GetComponent<dialogueManager>().End();
+                        warned = 0;
+                    }
                     
-                    other.GetComponent<PlayerController>().LoadScene(treasureSceneNum);
-                    other.transform.position = tpPos;
-                    other.GetComponent<PlayerController>().spawnpoint = tpPos;
+                    
                     //Debug.Log("3");
                 }
             }
@@ -50,6 +61,10 @@ public class DoorScript : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.active = true;
                 indicator.active = true;
             }
+        }
+        if(warned == 0 && !Input.GetKey(KeyCode.Mouse1))
+        {
+            warned = 1;
         }
     }
 }

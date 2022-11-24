@@ -185,6 +185,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6baf92f068c1cc94983e6b4573b95b6e, type: 3}
   - {fileID: 21300000, guid: 2c5867f0b5cb12345b4b25de3bf612b6, type: 3}
   - {fileID: 21300000, guid: c1ce38f0b677de946a80c65a84c136c2, type: 3}
+  - {fileID: 21300000, guid: 7d559201fe5df3f498b6536b3ed0d162, type: 3}
   - {fileID: 21300000, guid: c50902119ff40894fba8ca89c5ffe989, type: 3}
   - {fileID: 21300000, guid: a07b431184a381b4c93998272c5261a7, type: 3}
   - {fileID: 21300000, guid: f466b811a5b6a0542b31e1b6b9995e5d, type: 3}
@@ -1032,6 +1033,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6a819d74dbd554e4eb5c614ba39f4bf4, type: 3}
   - {fileID: 21300000, guid: acff6294237181244a93d86208cb0230, type: 3}
   - {fileID: 21300000, guid: 854db8943ce62a24e9bad1c3bbd497f8, type: 3}
+  - {fileID: 21300000, guid: 0c307f94f2d2978419b6dd2b635d10a4, type: 3}
   - {fileID: 21300000, guid: 9967c2a4e64952d4588e8a983a84f702, type: 3}
   - {fileID: 21300000, guid: 395834a4a4651a7418db38216f4b59f1, type: 3}
   - {fileID: 21300000, guid: 4c8b8fa4261cebd41be0d78cd9ce3013, type: 3}
@@ -3478,6 +3480,7 @@ SpriteAtlas:
   - adventurer_01_03
   - engineer_02_1
   - aristocrat_01_3
+  - Icon
   - ground_monk
   - Attack-Sheet
   - Orange Explosion
@@ -4325,6 +4328,7 @@ SpriteAtlas:
   - Warrior_Attack_4
   - Warrior_Fall_3
   - mermaid_3
+  - Warrior_Run_6 1
   - dog_4
   - Warrior_Dash_7
   - merchant

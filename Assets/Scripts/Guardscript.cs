@@ -8,6 +8,7 @@ public class Guardscript : MonoBehaviour
     dialogueManager dM;
     [SerializeField] string WarningDialogue = "You cant be here!!";
     CapsuleCollider2D cc;
+    [SerializeField] float speakingLength = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +45,9 @@ public class Guardscript : MonoBehaviour
 
     IEnumerator Caught(Collider2D player, Vector3 diff)
     {
-        Debug.Log("CAUGHT");
+        //Debug.Log("CAUGHT");
         dM.Next(WarningDialogue);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(speakingLength);
         dM.End();
         dM.End();
         // send to pos

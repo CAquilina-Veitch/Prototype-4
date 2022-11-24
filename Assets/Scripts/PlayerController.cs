@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 spawnpoint;
     bool canJump = true;
     public int maxScene=0;
+    public bool hasGottenChest = false;
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D rb;
@@ -148,9 +149,10 @@ public class PlayerController : MonoBehaviour
         Vector3 offset = -transform.up * 0.75f*transform.localScale.x;
         RaycastHit2D groundCheck1 = Physics2D.Raycast(transform.position + offset + transform.right * 0.3f * transform.localScale.x, Vector2.down, 0.1f, groundCheckMask);
         RaycastHit2D groundCheck2 = Physics2D.Raycast(transform.position + offset + transform.right * -0.3f * transform.localScale.x, Vector2.down, 0.1f, groundCheckMask);
+        RaycastHit2D groundCheck3 = Physics2D.Raycast(transform.position + offset, Vector2.down, 0.1f, groundCheckMask);
         /*Debug.DrawRay(transform.position + transform.right * 0.3f - transform.up * 0.75f, Vector2.down, Color.blue, groundCheckMask);
         Debug.DrawRay(transform.position - transform.right * 0.3f - transform.up * 0.75f, Vector2.down, Color.blue, groundCheckMask);*/
-        if (groundCheck1.collider!=null || groundCheck2.collider != null)
+        if (groundCheck1.collider!=null || groundCheck2.collider != null|| groundCheck3.collider != null)
         {
             grounded = true;
             
@@ -182,7 +184,7 @@ public class PlayerController : MonoBehaviour
         
 
         //animations
-        if (Mathf.Abs(rb.velocity.x) > 0.05f)
+        if (Mathf.Abs(rb.velocity.x) > 0.1f)
         {
             sR.flipX = rb.velocity.x < 0 ? true : false;
         }
@@ -245,7 +247,7 @@ public class PlayerController : MonoBehaviour
     }
     public void LoadScene(int id)
     {
-        Debug.Log("LOADING " + id);
+        //Debug.Log("LOADING " + id);
         maxScene = id> maxScene?id:maxScene;
         isInvisible = false;
         refreshInvisBar();

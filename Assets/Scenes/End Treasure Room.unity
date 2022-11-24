@@ -7140,6 +7140,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1544672755876032525, guid: 73cab1f01c54d4b4b827e84e87b93631, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1544672755876032527, guid: 73cab1f01c54d4b4b827e84e87b93631, type: 3}
       propertyPath: m_Name
       value: Mouse2

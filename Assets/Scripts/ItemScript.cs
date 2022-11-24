@@ -52,7 +52,7 @@ public class ItemScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-        Debug.Log($"TRiggered by {other.gameObject.name} which has component? {other.GetComponent<Inventory>()}");
+        //Debug.Log($"TRiggered by {other.gameObject.name} which has component? {other.GetComponent<Inventory>()}");
         if(other.TryGetComponent(out Inventory inv))
         {
             inv.changeItem(id, 1);
