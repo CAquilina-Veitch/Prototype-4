@@ -93,7 +93,7 @@ public class NPCConversation : MonoBehaviour
         //Debug.Log($"{dialogue[nextDialogue]} words, {nextDialogue} number, {dialogue.Length} length");
         if (nextDialogue >= currentDialogue.Length)
         {
-            Debug.Log(":END");
+            //Debug.Log(":END");
             
             if (dM.End())
             {
@@ -105,12 +105,12 @@ public class NPCConversation : MonoBehaviour
         {
             if (dM.Next(currentDialogue[nextDialogue]))
             {
-                Debug.Log("NEXT");
+                //Debug.Log("NEXT");
                 nextDialogue++;
             }
             
         }
-        Debug.LogError($"{nextDialogue},{ currentDialogue.Length}");
+        //Debug.LogError($"{nextDialogue},{ currentDialogue.Length}");
         
     }
     bool isGivingItem()

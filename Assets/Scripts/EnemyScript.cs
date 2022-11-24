@@ -36,6 +36,7 @@ public class EnemyScript : MonoBehaviour
         dmgHitbox.damage = damage;
         healthScript.healthValue = maxHealth;
         healthScript.maxHealth = maxHealth;
+        returnToLoop();
     }
 
 
@@ -97,24 +98,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        if (canAttack)
-        {
-            RaycastHit2D upCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection, 0), 1.11f);
-            Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection,0), Color.cyan, 5);
-            if (upCheck.collider != null)
-            {
-                Debug.Log(upCheck.collider.gameObject.name);
-                if (upCheck.collider.tag == "Player")
-                {
-                    if (!upCheck.collider.GetComponent<PlayerController>().isInvisible)
-                    {
-
-                        attack();
-                    }
-                }
-            }
-                    
-        }
+        
 
 
         velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime * 10);
@@ -163,6 +147,34 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void returnToLoop()
+    {
+        StartCoroutine(headattackloop());
+    }
+    IEnumerator headattackloop()
+    {
+        yield return new WaitForSeconds(1);
+        if (canAttack)
+        {
+            RaycastHit2D upCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection, 0), 1.11f);
+            Debug.DrawRay(transform.position + new Vector3(currentDirection * hitboxWidth, 1.3f) + offset, new Vector3(-currentDirection, 0), Color.cyan, 5);
+            if (upCheck.collider != null)
+            {
+                Debug.Log(upCheck.collider.gameObject.name);
+                if (upCheck.collider.tag == "Player")
+                {
+                    if (!upCheck.collider.GetComponent<PlayerController>().isInvisible)
+                    {
+
+                        attack();
+                    }
+                }
+            }
+
+        }
+        returnToLoop();
+
+    }
 
 
 
