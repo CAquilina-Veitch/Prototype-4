@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     float invisTime;
     public Vector3 spawnpoint;
     bool canJump = true;
+    public int maxScene=0;
 
     [Header("Dependencies")]
     [SerializeField] Rigidbody2D rb;
@@ -243,6 +244,7 @@ public class PlayerController : MonoBehaviour
     public void LoadScene(int id)
     {
         Debug.Log("LOADING " + id);
+        maxScene = id> maxScene?id:maxScene;
         isInvisible = false;
         refreshInvisBar();
         SpriteMaterial.shader = NormalShader;
@@ -252,6 +254,7 @@ public class PlayerController : MonoBehaviour
         dM.End();
         dM.End();
         canJump = true;
+        deathMultiplier = 1;
     }
     public void Restart()
     {

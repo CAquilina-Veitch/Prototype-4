@@ -5,7 +5,7 @@ using UnityEngine;
 public class nextScene : MonoBehaviour
 {
     [SerializeField] Vector3 tpPos;
-    [SerializeField] int sceneNum;
+    [SerializeField] public int sceneNum;
 
     
     private void OnTriggerEnter2D(Collider2D other)
