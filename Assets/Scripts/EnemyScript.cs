@@ -97,7 +97,20 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-
+        if (canAttack)
+        {
+            RaycastHit2D upCheck = Physics2D.Raycast(transform.position + new Vector3(currentDirection * hitboxWidth, 0) + offset, Vector2.up, 1.11f);
+            Debug.DrawRay(transform.position + new Vector3(0, 0.7f) + offset, Vector2.up * 0.3f, Color.cyan, 5);
+            if (upCheck.collider != null)
+            {
+                Debug.Log(upCheck.collider.gameObject.name);
+                if (upCheck.collider.tag != "Player")
+                { 
+                    attack();
+                }
+            }
+                    
+        }
 
 
         velocity.x = Mathf.Lerp(rb.velocity.x, currentDirection * speed, Time.deltaTime * 10);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class nextScene : MonoBehaviour
 {
-    [SerializeField] Vector3 tpPos;
+    [SerializeField] public Vector3 tpPos;
     [SerializeField] public int sceneNum;
 
     

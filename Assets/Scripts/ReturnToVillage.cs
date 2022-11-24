@@ -10,6 +10,7 @@ public class ReturnToVillage : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().maxScene >= 4)
         {
             GetComponent<nextScene>().sceneNum = 4;
+            GetComponent<nextScene>().tpPos = new Vector3(-8,-2);
         }
     }
 }

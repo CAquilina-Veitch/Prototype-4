@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
         
 
         //animations
-        if (rb.velocity.x != 0)
+        if (Mathf.Abs(rb.velocity.x) > 0.05f)
         {
             sR.flipX = rb.velocity.x < 0 ? true : false;
         }
